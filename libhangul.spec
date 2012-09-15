@@ -1,20 +1,30 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static libraries
+%bcond_without	tests		# don't perform "make check"
 #
 Summary:	Hangul input library
+Summary(pl.UTF-8):	Biblioteka wprowadzania znaków Hangul
 Name:		libhangul
-Version:	0.0.12
+Version:	0.1.0
 Release:	1
-License:	LGPLv2+
+License:	LGPL v2+
 Group:		Libraries
-Source0:	http://kldp.net/frs/download.php/5855/%{name}-%{version}.tar.gz
-# Source0-md5:	ef3941f5f0f3e83b1de699f2d46a1c92
+#Source0Download: http://code.google.com/p/libhangul/downloads/list
+Source0:	http://libhangul.googlecode.com/files/%{name}-%{version}.tar.gz
+# Source0-md5:	e9cf109772cc5fbc79f5de503ea7550a
 URL:		http://kldp.net/projects/hangul/
+BuildRequires:	check-devel
+BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libhangul provides common features for Hangul input method programs.
+
+%description -l pl.UTF-8
+libhangul udostępnia ogólne funkcje dla programów wykorzystujących
+metodę wprowadzania znaków Hangul
 
 %package devel
 Summary:	Header files for libhangul library
@@ -59,12 +69,17 @@ Dokumentacja API biblioteki libhangul.
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
+%if %{with tests}
+%{__make} -C test check
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
@@ -80,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/hangul
 %attr(755,root,root) %{_libdir}/libhangul.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libhangul.so.[0-9]
+%attr(755,root,root) %ghost %{_libdir}/libhangul.so.1
 %{_datadir}/%{name}
 
 %files devel
