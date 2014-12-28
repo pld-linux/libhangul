@@ -15,7 +15,7 @@ Source0:	http://libhangul.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	e9cf109772cc5fbc79f5de503ea7550a
 URL:		http://kldp.net/projects/hangul/
 BuildRequires:	check-devel
-BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
