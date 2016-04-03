@@ -10,7 +10,7 @@ Version:	0.1.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-#Source0Download: http://code.google.com/p/libhangul/downloads/list
+#Source0Download: https://github.com/choehwanjin/libhangul/releases
 Source0:	http://libhangul.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	e9cf109772cc5fbc79f5de503ea7550a
 URL:		http://kldp.net/projects/hangul/
