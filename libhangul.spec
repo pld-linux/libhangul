@@ -7,7 +7,7 @@ Summary:	Hangul input library
 Summary(pl.UTF-8):	Biblioteka wprowadzania znaków Hangul
 Name:		libhangul
 Version:	0.1.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: https://github.com/choehwanjin/libhangul/releases
